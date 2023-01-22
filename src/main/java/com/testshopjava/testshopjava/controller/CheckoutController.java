@@ -1,0 +1,41 @@
+package com.testshopjava.testshopjava.controller;
+
+
+import com.testshopjava.testshopjava.dto.Purchase;
+import com.testshopjava.testshopjava.dto.PurchaseResponse;
+import com.testshopjava.testshopjava.service.CheckoutService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@CrossOrigin("http://localhost:4200")
+@RestController
+@RequestMapping("/api/checkout")
+public class CheckoutController {
+
+    private CheckoutService checkoutService;
+
+    public CheckoutController(CheckoutService checkoutService) {
+        this.checkoutService = checkoutService;
+    }
+
+    @PostMapping("/purchase")
+    public PurchaseResponse placeOrder(@RequestBody Purchase purchase) {
+
+        PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);
+
+        return purchaseResponse;
+    }
+
+}
+
+
+
+
+
+
+
+
+
